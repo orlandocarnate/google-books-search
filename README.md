@@ -8,8 +8,45 @@ Here are the technologies that you need to install
 * [ReactJS](https://reactjs.org/) A JavaScript library for building user interfaces
 * [Bootstrap](https://getbootstrap.com/) An open source toolkit for developing with HTML, CSS, and JS. 
 * [Node.js](https://nodejs.org/en/) A JavaScript runtime built on Chrome's V8 JavaScript engine.
-* Node Modules:
+* [MongoDB](https://www.mongodb.com/) A NoSQL Database that uses JSON-like data with schemata.
+* [Google Books API](https://developers.google.com/books/) An API that can perform full-text searches and retrieve book information, viewability and eBook availability.
+* Node.js Modules:
+    * [react-router-dom](https://www.npmjs.com/package/react-router-dom) DOM bindings for React Router.
     * [Express](https://www.npmjs.com/package/express) Fast, unopinionated, minimalist web framework for node.
+    * [Mongoose](https://www.npmjs.com/package/mongoose) A MongoDB object modeling tool designed to work in an asynchronous environment.
+    * [Express package](https://www.npmjs.com/package/express) Fast, unopinionated, minimalist web framework.
+    * [Express Handlebars](https://www.npmjs.com/package/express-handlebars) Node module as the view engine for Express
+    * [Axios](https://www.npmjs.com/package/axios) Promise based HTTP client for the browser and node.js
+
+## App functionality
+* **Search** - User can search for books via the Google Books API and render them here. User has the option to "*View*" a book, bringing them to the book on Google Books, or "*Save*" a book, saving it to the Mongo database.
+
+* **Saved** - Renders all books saved to the Mongo database. User has an option to "*View*" the book, bringing them to the book on Google Books, or "*Delete*" a book, removing it from the Mongo database.
+
+## React Components
+* 
+
+## Mongoose Schema
+* Database: `googlebooks`
+* The `Books` collection schema contains the following fields:
+    * title
+    * authors
+    * description
+    * image
+    * link
+* The `Documents` collection shema contains the following fields:
+    * authors
+    * description
+    * image
+    * link
+    * title
+
+## Express Routes for the Server
+* `/api/books` **(GET)** - Should return all saved books as JSON.
+* `/api/books` **(POST)** - Will be used to save a new book to the database.
+* `/api/books/:id` **(DELETE)** - Will be used to delete a book from the database by Mongo _id.
+* `*` **(GET)** - Will load your single HTML page in `client/build/index.html`. Must be declared last otherwise everythig will go to `index.html`.
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
