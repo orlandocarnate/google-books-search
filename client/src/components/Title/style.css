@@ -1,0 +1,27 @@
+.jumbotron {
+    background-image: url('./blur-books-ceramic-176103.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 360px;
+}
+
+@media (max-width: 540px) {
+    .logo {
+        max-height: 40px;
+        object-fit: cover;
+    }
+    .title {
+        font-size: .5em;
+    }
+}
+
+@media (max-width: 320px) {
+    .logo {
+        max-height: 30px;
+        object-fit: cover;
+    }
+    .title {
+        font-size: .4em;
+    }
+}
