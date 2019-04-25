@@ -1,29 +1,21 @@
-import React, { Component } from "react";
-// import logo from "./logo.svg";
-// import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import SearchPage from "./pages/SearchPage";
+import SavedPage from "./pages/SavedPage";
 import Navbar from "./components/Navbar";
-import Search from "./components/Search";
-import Title from "./components/Title";
-import Book from "./components/Book";
 
-class App extends Component {
-  render() {
-    return (
-      // <React.Fragment>
-      <div className="container">
+function App() {
+  return (
+    <Router>
+      <div>
         <Navbar />
-        <Title />
-        <Search />
-        <div className="row">
-          <Book />
-          <Book />
-          <Book />
-          <Book />
-        </div>
+        <Switch>
+          <Route exact path="/" component={SearchPage} />
+          <Route exact path="/Saved" component={SavedPage} />
+        </Switch>
       </div>
-      // </React.Fragment>
-    );
-  }
+    </Router>
+  );
 }
 
 export default App;
