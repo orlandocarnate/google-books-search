@@ -9,7 +9,7 @@ function Search(props) {
                 <div className="input-group">
                     <input type="text" className="form-control" placeholder="Enter a Title" required />
                     <div className="input-group-append">
-                        <button className="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fas fa-search"></i> Search</button>
+                        <button className="btn btn-outline-secondary" type="submit" id="button-addon2"><i className="fas fa-search"></i> Search</button>
                     </div>
                 </div>
             </div>

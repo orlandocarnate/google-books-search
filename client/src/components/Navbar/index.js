@@ -1,21 +1,23 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom'
 import "./style.css";
 
 function Navbar(props) {
+
   return (
     <ul className="nav">
-      <li className="nav-item">
-        <a className="nav-link active" href="/">Google Books</a>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link" href="/"><i class="fas fa-search"></i> Search</a>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link" href="/saved"><i class="fas fa-bookmark"></i> Favorites</a>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link disabled" href="/" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
+      <NavLink exact to="/" className="nav-link">
+        Google Books React
+      </NavLink>
+      <NavLink to="/search" className="nav-link" activeClassName="active">
+        <i className="fas fa-search"></i> Search
+      </NavLink>
+      <NavLink to="/saved" className="nav-link" activeClassName="active">
+        <i className="fas fa-bookmark"></i> Favorites
+      </NavLink>
+      <NavLink to="/faq" className="nav-link" activeClassName="active">
+        FAQs
+      </NavLink>
     </ul>
   );
 }

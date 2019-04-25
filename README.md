@@ -46,7 +46,14 @@ Here are the technologies that you need to install
 * `/api/books` **(POST)** - Will be used to save a new book to the database.
 * `/api/books/:id` **(DELETE)** - Will be used to delete a book from the database by Mongo _id.
 * `*` **(GET)** - Will load your single HTML page in `client/build/index.html`. Must be declared last otherwise everythig will go to `index.html`.
-
+* `<NavLink>` A special version of the `<Link>` that will add styling attributes to the rendered element when it matches the current URL.
+* `activeClassName` and `/` Root path problem!
+    * To correct this you must add **`exact`** so that the path is matched *EXACTLY*!
+    ```
+    <NavLink exact to="/" className="nav-link">
+        Google Books React
+    </NavLink>
+    ```
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
