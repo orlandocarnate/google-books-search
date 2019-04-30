@@ -6,26 +6,31 @@ var mongoose = require("mongoose");
 const db = require("../models");
 
 module.exports = function (app) {
+    const url = "https://www.googleapis.com/books/v1/";
+
     // find all books
-    api.get("api/books", function (request, response) {
+    app.get("api/books", function (request, response) {
+        let findBooks = url + "volumes?q=" + request.body.search
         // use Axios to get info from Google Books API
-        axios.get("googeapi").then(function () {
-            // Assin axiosResponse to variables: title, author, etc
-        }).then(function () {
-            // Return response
-            axiosResponse.json({ data: values})
+        axios.get(findBooks)
+        .then(function (axiosResponse) {
+            response.json(axiosResponse.data)
         })
-        response.send("whatevs");
+        .then(function () {
+            // Return response
+            console.log(axiosResponse.json({ data: values}))
+        })
+        // response.send("whatevs");
     });
 
     // save a book
-    api.post("api/books", function (request, response) {
+    app.post("api/books", function (request, response) {
         // put a new book
         db.Book.put({}).then();
     });
 
     // delete a book
-    api.delete("api/books", function (request, response) {
+    app.delete("api/books", function (request, response) {
         // put a new book
         db.Book.destroy({}).then();
     });

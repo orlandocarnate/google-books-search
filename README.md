@@ -55,6 +55,14 @@ Here are the technologies that you need to install
     </NavLink>
     ```
 
+## Workflow of the app
+1. on `componentDidMount()`: 
+    * the `loadBooks()` method calls `API.getBooks()` which makes a HTTP GET REQUEST to path `/books`
+        * `booksController` GET method finds all the books from the API
+            * save the response to state with `setState({ books: response.data })`
+            * render to Books component using `.map()` method
+2. 
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
