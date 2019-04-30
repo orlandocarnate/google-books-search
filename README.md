@@ -43,6 +43,7 @@ Here are the technologies that you need to install
 
 ## Express Routes for the Server
 * `/api/books` **(GET)** - Should return all saved books as JSON.
+    * Get search string from form body with `request.body`
 * `/api/books` **(POST)** - Will be used to save a new book to the database.
 * `/api/books/:id` **(DELETE)** - Will be used to delete a book from the database by Mongo _id.
 * `*` **(GET)** - Will load your single HTML page in `client/build/index.html`. Must be declared last otherwise everythig will go to `index.html`.
@@ -61,7 +62,14 @@ Here are the technologies that you need to install
         * `booksController` GET method finds all the books from the API
             * save the response to state with `setState({ books: response.data })`
             * render to Books component using `.map()` method
-2. 
+2. on Search Submit the string is sent to the `/api/books` as a GET request, with the search string sent as a JSON object.
+    * send as 
+    ```
+    axios.post(url, {key: value})
+    .then (function (response) {
+        
+    })
+    ```
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
