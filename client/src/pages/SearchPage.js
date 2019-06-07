@@ -22,35 +22,37 @@ class App extends Component {
   }
 
   // create function to call API Books search
-  googleSearch = () => {
-    // API.searchBooks("Harry Potter")
-    //   .then(res => {
-    //     this.setState({ books: res.data })
-    //   })
-    //   .catch(err => console.log(err));
-
-    const url = "https://www.googleapis.com/books/v1/";
-    let findBooksUrl = url + "volumes?q=" + "Harry Potter";
-    axios({
-      method: 'GET',
-      url: findBooksUrl
-    })
-      .then(axiosResponse => {
-        // response.json(axiosResponse.data)
-        console.log("AXIOS RESPONSE:\n", axiosResponse.data.items)
-        this.setState({ books: axiosResponse.data.items })
+  googleSearch = (query = "Harry Potter") => {
+    API.searchGoogleBooks(query)
+      .then(res => {
+        console.log(res.data.items);
+        this.setState({ books: res.data.items })
       })
+      .catch(err => console.log(err));
+
+    // const url = "https://www.googleapis.com/books/v1/";
+    // let findBooksUrl = url + "volumes?q=" + "Harry Potter";
+    // axios({
+    //   method: 'GET',
+    //   url: findBooksUrl
+    // })
+    //   .then(axiosResponse => {
+    //     // response.json(axiosResponse.data)
+    //     console.log("AXIOS RESPONSE:\n", axiosResponse.data.items)
+    //     this.setState({ books: axiosResponse.data.items })
+    //   })
   }
   // save books to state
 
   handleSearchChange = (event) => {
-    this.setState({search: event.target.value});
+    this.setState({ search: event.target.value });
     console.log("Form onSubmit Event data:\n", this.state.search);
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
     console.log("Form onSubmit Event data:\n", this.state.search);
+    this.googleSearch(this.state.search)
   }
 
   render() {
@@ -59,7 +61,7 @@ class App extends Component {
       <div className="container">
         {/* <Navbar /> */}
         <Title />
-        <Search onSubmit = {this.handleSubmit} onChange={this.handleSearchChange} />
+        <Search handleSubmit={this.handleSubmit} handleSearchChange={this.handleSearchChange} />
         <div className="row">
           <ul>
             {this.state.books.map(book => {

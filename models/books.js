@@ -8,10 +8,15 @@ let BookSchema = new Schema({
         type: String,
         required: true
     },
+    author: Array,
+    description: String,
+    image: String,
+    link: String,
+    date: String,
+    bookId: String
+});
 
-})
-
-let Book = mongoose.model("Book", BookSchema);
+let Books = mongoose.model("Books", BookSchema);
 
 // export the Book model to be used in apiRoutes or Server.js
-module.exports = Book;
+module.exports = Books;
