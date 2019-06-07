@@ -16,7 +16,7 @@ module.exports = {
         });
     },
     
-    // 'api/book/:id' GET
+    // 'api/books/:id' GET
     findById(req, res) {
         db.Books.findById(req.params.id)
         .then(dbBook => res.json(dbBook))
@@ -26,7 +26,7 @@ module.exports = {
         });
     },
     
-    // 'api/book' POST
+    // 'api/books' POST
     saveBook(req, res) {
         db.Books.create(req.body)
         .then(dbBook => res.json(dbBook))
@@ -36,7 +36,7 @@ module.exports = {
         });
     },
     
-    // 'api/book/:id' DELETE
+    // 'api/books/:id' DELETE
     deleteBook(req, res) {
         db.Books.findById(req.params.id)
             .then(dbBook => dbBook.remove())
