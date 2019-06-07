@@ -1,5 +1,3 @@
-var express = require("express");
-var axios = require("axios");
 var mongoose = require("mongoose");
 
 // get Book and Doc models
