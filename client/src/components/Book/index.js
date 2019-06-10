@@ -7,7 +7,7 @@ function Book(props) {
   return (
     <div>
       <li>
-        {props.title}
+        {props.book.volumeInfo.title} <button>Save</button>
       </li>
     </div>
 

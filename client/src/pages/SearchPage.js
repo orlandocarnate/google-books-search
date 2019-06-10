@@ -65,7 +65,7 @@ class App extends Component {
         <div className="row">
           <ul>
             {this.state.books.map(book => {
-              return <Book key={book.id} title={book.volumeInfo.title} />
+              return <Book key={book.id} book={book} />
             })}
 
           </ul>
