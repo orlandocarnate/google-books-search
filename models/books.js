@@ -8,12 +8,10 @@ let BookSchema = new Schema({
         type: String,
         required: true
     },
-    author: Array,
+    authors: Array,
     description: String,
     image: String,
-    link: String,
-    date: String,
-    bookId: String
+    link: String
 });
 
 let Books = mongoose.model("Books", BookSchema);

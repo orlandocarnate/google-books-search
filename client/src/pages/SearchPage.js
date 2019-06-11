@@ -23,7 +23,7 @@ class App extends Component {
   }
 
   // create function to call API Books search
-  googleSearch = (query = "Harry Potter") => {
+  googleSearch = (query) => {
     if (query) {
       API.searchGoogleBooks(query)
         .then(res => {
@@ -39,10 +39,12 @@ class App extends Component {
   // get last search list
   searchList = () => {
     API.getSearchList()
-      .then( res => {
-        
-        this.setState({ books: res.data.items })
+      .then(res => {
+        if (res.data.items !== undefined) {
+          this.setState({ books: res.data.items })
+        }
       })
+      .catch(err => console.log(err));
   }
 
   handleSearchChange = (event) => {

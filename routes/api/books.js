@@ -4,11 +4,11 @@ const booksController = require("../../controllers/booksController");
 // api/books route
 router.route('/')
     .get(booksController.findAll)
-    .post(booksController.create);
+    .post(booksController.saveBook);
 // api/books route
 router.route('/searchlist')
     .get(booksController.findAll)
-    .post(booksController.create);
+    .post(booksController.saveSearchList);
 
 // api/book/:id route
 router.route('/:id')

@@ -27,7 +27,17 @@ module.exports = {
 
     // 'api/books' POST
     saveSearchList(req, res) {
-        db.Books.create(req.body)
+        console.log(req.body.items);
+        const books = req.body.items.map( item => {
+            return ({
+                title: item.volumeInfo.title,
+                authors: item.volumeInfo.authors,
+                description: item.volumeInfo.description,
+                image: item.volumeInfo.imageLinks.smallThumbnail,
+                link: item.volumeInfo.infoLink
+            })
+        })
+        db.Books.create(books)
             .then(dbBook => res.json(dbBook))
             .catch(err => {
                 console.log(err);
