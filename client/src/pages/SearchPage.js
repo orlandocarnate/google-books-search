@@ -15,23 +15,34 @@ class App extends Component {
   }
 
   // load last search on page load
-  // componentDidMount = () => {
-  //   // test api
-  //   this.googleSearch();
+  componentDidMount = () => {
+    // test api
+    // this.googleSearch();
+    this.searchList();
 
-  // }
+  }
 
   // create function to call API Books search
   googleSearch = (query = "Harry Potter") => {
     if (query) {
       API.searchGoogleBooks(query)
         .then(res => {
+          API.saveSearchList(res.data);
           console.log(res.data.items);
           this.setState({ books: res.data.items })
         })
         .catch(err => console.log(err));
     }
 
+  }
+
+  // get last search list
+  searchList = () => {
+    API.getSearchList()
+      .then( res => {
+        
+        this.setState({ books: res.data.items })
+      })
   }
 
   handleSearchChange = (event) => {

@@ -7,6 +7,12 @@ export default {
   getBookById(bookId) {
     return axios.get("/api/books/" + bookId);
   },
+  saveSearchList(bookData) {
+    return axios.post("/api/books/searchlist", bookData)
+  },
+  getSearchList(bookData) {
+    return axios.get("/api/books/searchlist", bookData)
+  },
   saveBook(bookData) {
     return axios.post("/api/books", bookData)
   },

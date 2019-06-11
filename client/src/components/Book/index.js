@@ -10,9 +10,9 @@ class Book extends Component {
         <img src={this.props.book.volumeInfo.imageLinks.smallThumbnail} className="mr-3" alt="..." />
         <div className="media-body">
           <h5 className="mt-0 mb-1">{this.props.book.volumeInfo.title}</h5>
-          <p>Summary here...</p>
+          <p>{this.props.book.volumeInfo.description}</p>
           <a className="btn btn-primary" href={this.props.book.volumeInfo.infoLink}>View</a> {" "}
-          <a className="btn btn-primary">Save</a>
+          <a className="btn btn-primary text-light">Save</a>
         </div>
       </li>
 

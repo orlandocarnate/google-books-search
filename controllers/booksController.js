@@ -26,7 +26,7 @@ module.exports = {
 
 
     // 'api/books' POST
-    lastSearch(req, res) {
+    saveSearchList(req, res) {
         db.Books.create(req.body)
             .then(dbBook => res.json(dbBook))
             .catch(err => {

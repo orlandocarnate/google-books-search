@@ -5,6 +5,10 @@ const booksController = require("../../controllers/booksController");
 router.route('/')
     .get(booksController.findAll)
     .post(booksController.create);
+// api/books route
+router.route('/searchlist')
+    .get(booksController.findAll)
+    .post(booksController.create);
 
 // api/book/:id route
 router.route('/:id')
