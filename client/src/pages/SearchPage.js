@@ -4,7 +4,7 @@ import API from "../utils/API";
 // import Navbar from "../components/Navbar";
 import Search from "../components/Search";
 import Title from "../components/Title";
-import Book from "../components/Book";
+import SearchBook from "../components/SearchBook";
 
 var axios = require("axios");
 
@@ -15,36 +15,40 @@ class App extends Component {
   }
 
   // load last search on page load
-  componentDidMount = () => {
-    // test api
-    // this.googleSearch();
-    this.searchList();
+  // componentDidMount = () => {
+  //   // test api
+  //   // this.googleSearch();
+  //   this.searchList();
 
-  }
+  // }
+
+  // get last search list
+  // searchList = () => {
+  //   API.getSearchList()
+  //     .then(res => {
+  //       if (res.data.items !== undefined) {
+  //         this.setState({ books: res.data.items })
+  //       }
+  //     })
+  //     .catch(err => console.log(err));
+  // }
 
   // create function to call API Books search
   googleSearch = (query) => {
     if (query) {
       API.searchGoogleBooks(query)
         .then(res => {
-          API.saveSearchList(res.data);
-          console.log(res.data.items);
           this.setState({ books: res.data.items })
         })
         .catch(err => console.log(err));
     }
-
   }
 
-  // get last search list
-  searchList = () => {
-    API.getSearchList()
-      .then(res => {
-        if (res.data.items !== undefined) {
-          this.setState({ books: res.data.items })
-        }
-      })
-      .catch(err => console.log(err));
+  saveBook = (book) => {
+    console.log("PARENT: \n", book);
+    API.saveBook(book)
+    .catch(err => console.log(err));
+
   }
 
   handleSearchChange = (event) => {
@@ -68,7 +72,7 @@ class App extends Component {
         <div className="row">
           <ul className="list-unstyled">
             {this.state.books.map(book => {
-              return <Book key={book.id} book={book} />
+              return <SearchBook key={book.id} book={book} saveBook={this.saveBook} />
             })}
 
           </ul>

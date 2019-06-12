@@ -11,7 +11,11 @@ let BookSchema = new Schema({
     authors: Array,
     description: String,
     image: String,
-    link: String
+    link: String,
+    saved: {
+        type: Boolean,
+        default: false
+    }
 });
 
 let Books = mongoose.model("Books", BookSchema);

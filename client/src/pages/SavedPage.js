@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import Title from "../components/Title";
-import Book from "../components/Book";
+import Book from "../components/SavedBook";
 
 class App extends Component {
   state = {

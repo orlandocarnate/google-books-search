@@ -11,6 +11,13 @@ module.exports = {
             .then(dbBooks => res.json(dbBooks))
             .catch(err => res.status(422).json(err));
     },
+    // 'api/books/favorites' GET
+    getFavorites(req, res) {
+        db.Books.find({})
+            // .sort({ date: -1 })
+            .then(dbBooks => res.json(dbBooks))
+            .catch(err => res.status(422).json(err));
+    },
 
     // 'api/books/:id' GET
     findById(req, res) {
@@ -37,6 +44,16 @@ module.exports = {
         })
         db.Books.create(books)
             .then(dbBook => res.json(dbBook))
+            .catch(err => {
+                console.log(err);
+                res.json(err);
+            });
+    },
+
+    // clear search list
+    clearSearch(req, res) {
+        db.Books.remove({})
+            .then(results => res.json(results))
             .catch(err => {
                 console.log(err);
                 res.json(err);
