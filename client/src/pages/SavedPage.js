@@ -1,15 +1,33 @@
 import React, { Component } from "react";
-// import logo from "./logo.svg";
-// import "./App.css";
-// import Navbar from "../components/Navbar";
+import API from "../utils/API";
 import Title from "../components/Title";
 import Book from "../components/Book";
 
 class App extends Component {
+  state = {
+    books: [],
+    search: ""
+  }
+
   componentDidMount() {
     // enter page load stuff here
+    this.savedList();
   }
   
+  // get last search list
+  savedList = () => {
+    console.log("test")
+    API.getSavedBooks()
+      .then(res => {
+        console.log(res);
+        if (res.data !== undefined) {
+          this.setState({ books: res.data })
+        }
+      })
+      .catch(err => console.log(err));
+  }
+
+
   render() {
     return (
       // <React.Fragment>
@@ -17,14 +35,16 @@ class App extends Component {
         {/* <Navbar /> */}
         <Title />
         <div className="row">
-          <Book />
-          <Book />
-          <Book />
-          <Book />
+          <ul className="list-unstyled">
+            {this.state.books.map(book => {
+              return <Book key={book.id} book={book} />
+            })}
+
+          </ul>
         </div>
       </div>
       // </React.Fragment>
-      
+
     );
   }
 }

@@ -5,6 +5,9 @@ const booksController = require("../../controllers/booksController");
 router.route('/')
     .get(booksController.findAll)
     .post(booksController.saveBook);
+// get saved books
+router.route('/favorites')
+    .get(booksController.getFavorites)
 // api/books route
 router.route('/searchlist')
     .get(booksController.findAll)

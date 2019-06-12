@@ -6,12 +6,10 @@ const db = require("../models");
 module.exports = {
     // 'api/books' GET
     findAll(req, res) {
-        db.Books.find(req.query)
+        db.Books.find({})
+            // .sort({ date: -1 })
             .then(dbBooks => res.json(dbBooks))
-            .catch(err => {
-                console.log(err);
-                res.json(err);
-            });
+            .catch(err => res.status(422).json(err));
     },
 
     // 'api/books/:id' GET
@@ -28,7 +26,7 @@ module.exports = {
     // 'api/books' POST
     saveSearchList(req, res) {
         console.log(req.body.items);
-        const books = req.body.items.map( item => {
+        const books = req.body.items.map(item => {
             return ({
                 title: item.volumeInfo.title,
                 authors: item.volumeInfo.authors,
