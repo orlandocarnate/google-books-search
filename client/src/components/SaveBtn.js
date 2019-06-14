@@ -1,26 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export class SaveBtn extends Component {
-    state = {
-        active: true
-    }
-
-    setDisable = () => {
-        this.setState({
-            active: false
-        })
-    }
-    render() {
-        return (
-            <span>
-                {this.state.active ? (
-                    <a className="btn btn-primary text-light" onClick={() => this.setDisable()}>Save</a>
-                    ) : (
-                        <a className="btn btn-primary text-light disabled">Saved</a>
-                    )}
-            </span>
-        )
-    }
+function SaveBtn(props) {
+    return (
+        <span>
+            {props.isSaved ? (
+                <span role="button" className="btn btn-primary text-light disabled">Saved</span>
+            ) : (
+                <span role="button" {...props} className="btn btn-primary text-light">Save</span>
+                )}
+        </span>
+    )
 }
 
-export default SaveBtn
+export default SaveBtn;

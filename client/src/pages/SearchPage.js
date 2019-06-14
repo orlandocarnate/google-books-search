@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-// import "./App.css";
-// import Navbar from "../components/Navbar";
 import Search from "../components/Search";
 import Title from "../components/Title";
-// import SearchItem from "../components/SearchItem";
 import SaveBtn from '../components/SaveBtn';
 
-var axios = require("axios");
-
-class App extends Component {
+class SearchPage extends Component {
   state = {
     books: [],
     search: ''
@@ -27,13 +22,13 @@ class App extends Component {
       API.searchGoogleBooks(query)
         .then(res => {
           // add isSaved false key value pair to each object in array
-          // const books = res.data.items.map(item => {
-          //   let obj = Object.assign({}, item);
-          //   obj.isSaved = false;
-          //   return obj
-          // })
-          // console.log(books);
-          this.setState({ books: res.data.items});
+          const books = res.data.items.map(item => {
+            let obj = Object.assign({}, item);
+            obj.isSaved = false;
+            return obj
+          })
+          console.log(books);
+          this.setState({ books });
         })
         .catch(err => console.log(err));
     }
@@ -41,14 +36,23 @@ class App extends Component {
 
   saveBook = (book) => {
     book.isSaved = true;
-    console.log("PARENT: \n", book);
     this.setState({
       books: [...this.state.books.filter(item => book.id !== item.id), { book }
       ]
     });
-    console.log(this.state.books);
-    // API.saveBook(book)
-    // .catch(err => console.log(err));
+    console.log("UPDATE BOOKS STATE:\n", this.state.books);
+    const bookData = {
+      title: book.volumeInfo.title,
+      authors: book.volumeInfo.authors,
+      description: book.volumeInfo.description,
+      image: book.volumeInfo.imageLinks.smallThumbnail,
+      link: book.volumeInfo.infoLink,
+      googleID: book.id
+    }
+    console.log(bookData);
+    API.saveFavorite(bookData)
+    .catch(err => console.log(err));
+
 
   }
 
@@ -65,9 +69,7 @@ class App extends Component {
 
   render() {
     return (
-      // <React.Fragment>
       <div className="container">
-        {/* <Navbar /> */}
         <Title />
         <Search handleSubmit={this.handleSubmit} handleSearchChange={this.handleSearchChange} />
         <div className="row">
@@ -79,8 +81,8 @@ class App extends Component {
                   <div className="media-body">
                     <h5 className="mt-0 mb-1">{book.volumeInfo.title} <span className="font-italic">by {book.volumeInfo.authors.join(", ")}</span></h5>
                     <p>{book.volumeInfo.description}</p>
-                    <a className="btn btn-primary" target="_blank" href={book.volumeInfo.link}>View</a> {" "}
-                    <SaveBtn onClick={() => this.saveBook(book._id)} />
+                    <a className="btn btn-primary" target="_blank" href={book.volumeInfo.infoLink}>View</a> {" "}
+                    <SaveBtn isSaved={book.isSaved} onClick={() => this.saveBook(book)} />
 
                   </div>
                 </li>
@@ -90,10 +92,8 @@ class App extends Component {
           </ul>
         </div>
       </div>
-      // </React.Fragment>
-
     );
   }
 }
 
-export default App;
+export default SearchPage;

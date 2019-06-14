@@ -1,23 +1,14 @@
 const router = require('express').Router();
 const booksController = require("../../controllers/booksController");
 
-// api/books route
+// get favorites and save favorite
 router.route('/')
     .get(booksController.findAll)
-    .post(booksController.saveBook);
-// get saved books
-router.route('/favorites')
-    .get(booksController.getFavorites)
-// api/books route
-router.route('/searchlist')
-    .get(booksController.findAll)
-    .post(booksController.saveSearchList);
+    .post(booksController.saveFavorite);
 
 // api/book/:id route
 router.route('/:id')
-    .get(booksController.findById)
-    .put(booksController.saveBook)
-    .delete(booksController.deleteBook);
+    .delete(booksController.deleteFavorite);
 
 module.exports = router;
 

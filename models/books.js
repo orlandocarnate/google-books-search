@@ -12,10 +12,10 @@ let BookSchema = new Schema({
     description: String,
     image: String,
     link: String,
-    saved: {
-        type: Boolean,
-        default: false
-    }
+    googleID: {
+        type: String,
+        unique: true
+    },
 });
 
 let Books = mongoose.model("Books", BookSchema);

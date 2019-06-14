@@ -1,22 +1,19 @@
 import axios from "axios";
 
 export default {
-  getSavedBooks() {
+  getFavorites() {
     return axios.get("/api/books")
   },
-  getBookById(bookId) {
-    return axios.get("/api/books/" + bookId);
-  },
-  saveSearchList(bookData) {
-    return axios.post("/api/books/searchlist", bookData)
-  },
-  getSearchList(bookData) {
-    return axios.get("/api/books/searchlist", bookData)
-  },
-  saveBook(bookData) {
+  // saveSearchList(bookData) {
+  //   return axios.post("/api/books/searchlist", bookData)
+  // },
+  // getSearchList(bookData) {
+  //   return axios.get("/api/books/searchlist", bookData)
+  // },
+  saveFavorite(bookData) {
     return axios.post("/api/books", bookData)
   },
-  deleteBook(bookId) {
+  deleteFavorite(bookId) {
     return axios.delete("/api/books/" + bookId)
   },
   searchGoogleBooks(bookQuery) {
