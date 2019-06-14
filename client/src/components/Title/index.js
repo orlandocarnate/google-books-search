@@ -6,7 +6,7 @@ function Title(props) {
     <div className="jumbotron jumbotron-fluid">
       <div className="container">
         <h1 className="display-4">ReactJS Google Books Search</h1>
-        <p className="lead">Search for Books and Save your favorites!</p>
+        <h2 className="lead">Search for Books and add them to your favorites list.</h2>
       </div>
     </div>
   );

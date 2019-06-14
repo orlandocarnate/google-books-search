@@ -4,4 +4,10 @@
     background-repeat: no-repeat;
     background-position: center;
     height: 360px;
+    color: wheat;
+    text-shadow: 2px 2px black;
+}
+
+.lead {
+    font-size: 2.5em;
 }
