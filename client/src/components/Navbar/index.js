@@ -5,7 +5,7 @@ import "./style.css";
 function Navbar(props) {
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-3 sticky-top">
       <div className="container">
         <NavLink exact to="/" className="navbar-brand"><i className="fas fa-book-open"></i> Google Books React</NavLink>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
