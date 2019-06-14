@@ -4,61 +4,62 @@ import API from "../utils/API";
 // import Navbar from "../components/Navbar";
 import Search from "../components/Search";
 import Title from "../components/Title";
-import SearchBook from "../components/SearchBook";
+// import SearchItem from "../components/SearchItem";
+import SaveBtn from '../components/SaveBtn';
 
 var axios = require("axios");
 
 class App extends Component {
   state = {
     books: [],
-    search: ""
+    search: ''
   }
 
-  // load last search on page load
-  // componentDidMount = () => {
-  //   // test api
-  //   // this.googleSearch();
-  //   this.searchList();
-
-  // }
-
-  // get last search list
-  // searchList = () => {
-  //   API.getSearchList()
-  //     .then(res => {
-  //       if (res.data.items !== undefined) {
-  //         this.setState({ books: res.data.items })
-  //       }
-  //     })
-  //     .catch(err => console.log(err));
-  // }
+  saveBook = (id) => {
+    const book = { ...this.state }
+    this.props.saveBook(book)
+    console.log(book);
+  }
 
   // create function to call API Books search
   googleSearch = (query) => {
     if (query) {
       API.searchGoogleBooks(query)
         .then(res => {
-          this.setState({ books: res.data.items })
+          // add isSaved false key value pair to each object in array
+          // const books = res.data.items.map(item => {
+          //   let obj = Object.assign({}, item);
+          //   obj.isSaved = false;
+          //   return obj
+          // })
+          // console.log(books);
+          this.setState({ books: res.data.items});
         })
         .catch(err => console.log(err));
     }
   }
 
   saveBook = (book) => {
+    book.isSaved = true;
     console.log("PARENT: \n", book);
-    API.saveBook(book)
-    .catch(err => console.log(err));
+    this.setState({
+      books: [...this.state.books.filter(item => book.id !== item.id), { book }
+      ]
+    });
+    console.log(this.state.books);
+    // API.saveBook(book)
+    // .catch(err => console.log(err));
 
   }
 
   handleSearchChange = (event) => {
     this.setState({ search: event.target.value });
-    console.log("Form onSubmit Event data:\n", this.state.search);
+    // console.log("Form onSubmit Event data:\n", this.state.search);
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Form onSubmit Event data:\n", this.state.search);
+    // console.log("Form onSubmit Event data:\n", this.state.search);
     this.googleSearch(this.state.search)
   }
 
@@ -72,7 +73,18 @@ class App extends Component {
         <div className="row">
           <ul className="list-unstyled">
             {this.state.books.map(book => {
-              return <SearchBook key={book.id} book={book} saveBook={this.saveBook} />
+              return (
+                <li className="media my-4" key={book.id}>
+                  <img src={book.volumeInfo.imageLinks.smallThumbnail} className="mr-3" alt="..." />
+                  <div className="media-body">
+                    <h5 className="mt-0 mb-1">{book.volumeInfo.title} <span className="font-italic">by {book.volumeInfo.authors.join(", ")}</span></h5>
+                    <p>{book.volumeInfo.description}</p>
+                    <a className="btn btn-primary" target="_blank" href={book.volumeInfo.link}>View</a> {" "}
+                    <SaveBtn onClick={() => this.saveBook(book._id)} />
+
+                  </div>
+                </li>
+              )
             })}
 
           </ul>
