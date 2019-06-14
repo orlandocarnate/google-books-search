@@ -35,7 +35,7 @@ class SearchPage extends Component {
   }
 
   saveBook = (book) => {
-    console.log("PRESSED SAVE\n",book);
+    console.log("PRESSED SAVE\n", book);
     // book.isSaved = true;
     // this.setState({
     //   books: [...this.state.books.filter(item => book.id !== item.id), { book }]
@@ -51,7 +51,7 @@ class SearchPage extends Component {
     }
     // console.log(bookData);
     API.saveFavorite(bookData)
-    .catch(err => console.log(err));
+      .catch(err => console.log(err));
 
 
   }
@@ -72,25 +72,33 @@ class SearchPage extends Component {
       <div className="container">
         <Title />
         <Search handleSubmit={this.handleSubmit} handleSearchChange={this.handleSearchChange} />
-        <div className="row">
-          <ul className="list-unstyled">
-            {this.state.books.map(book => {
-              return (
-                <li className="media my-4 rounded shadow p-2" key={book.id}>
-                  <img src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : ""} className="mr-3" alt="..." />
-                  <div className="media-body">
-                    <h5 className="mt-0 mb-1">{book.volumeInfo.title} <span className="font-italic">by {book.volumeInfo.authors.join(", ")}</span></h5>
-                    <p>{book.volumeInfo.description}</p>
-                    <a className="btn btn-primary" target="_blank" href={book.volumeInfo.infoLink}>View</a> {" "}
-                    <SaveBtn key="book.id" book={book} savebook={this.saveBook} />
+        {this.state.books.length ? (
+          <div className="row">
+            <ul className="list-unstyled">
+              {this.state.books.map(book => {
+                return (
+                  <li className="media my-4 rounded shadow p-2" key={book.id}>
+                    <img src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : ""} className="mr-3" alt="..." />
+                    <div className="media-body">
+                      <h5 className="mt-0 mb-1">{book.volumeInfo.title} <span className="font-italic">by {book.volumeInfo.authors.join(", ")}</span></h5>
+                      <p className="d-block text-truncate description" style={{ "max-width": "1024px" }}>{book.volumeInfo.description}</p>
+                      <a className="btn btn-primary" target="_blank" href={book.volumeInfo.infoLink}>View</a> {" "}
+                      <SaveBtn key="book.id" book={book} savebook={this.saveBook} />
 
-                  </div>
-                </li>
-              )
-            })}
+                    </div>
+                  </li>
+                )
+              })}
 
-          </ul>
-        </div>
+            </ul>
+          </div>
+        ) : (
+            <div className="text-center">
+              <h3>Search List Empty</h3>
+              <h4>Please enter a title, subject, or author in the search field.</h4>
+            </div>
+          )
+        }
       </div>
     );
   }
