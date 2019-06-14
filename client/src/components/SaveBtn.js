@@ -14,9 +14,9 @@ class SaveBtn extends Component {
         return (
             <span>
                 {this.state.saved ? (
-                    <span role="button" className="btn btn-secondary text-light disabled">Added to Favorites</span>
+                    <span role="button" className="btn btn-secondary text-light disabled btn-sm">Added to Favorites</span>
                 ) : (
-                    <span role="button" {...this.props} className="btn btn-primary text-light" onClick={()=> this.handleBtn()}>Save</span>
+                    <span role="button" {...this.props} className="btn btn-primary text-light btm-sm" onClick={()=> this.handleBtn()}>Save</span>
                     )}
             </span>
         )

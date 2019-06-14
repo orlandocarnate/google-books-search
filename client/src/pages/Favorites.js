@@ -3,6 +3,7 @@ import API from "../utils/API";
 import Title from "../components/Title";
 import DeleteBtn from "../components/DeleteBtn";
 import ViewBtn from "../components/ViewBtn";
+import './style.css';
 
 class Favorites extends Component {
   state = {
@@ -49,8 +50,8 @@ class Favorites extends Component {
                   <li className="media my-4 rounded shadow p-2">
                     <img src={book.image} className="mr-3" alt="..." />
                     <div className="media-body">
-                      <h5 className="mt-0 mb-1">{book.title}</h5>
-                      <p className="d-block text-truncate description" style={{"max-width": "960px"}}>{book.description}</p>
+                      <h5 className="mt-0 mb-1 book-title">{book.title}</h5>
+                      <p className="overflow-auto description">{book.description}</p>
                       <ViewBtn bookLink={book.link} /> {" "}
                       <DeleteBtn onClick={() => this.deleteFavorite(book._id)} />
                     </div>

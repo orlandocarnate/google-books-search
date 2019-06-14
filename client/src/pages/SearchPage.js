@@ -3,6 +3,7 @@ import API from "../utils/API";
 import Search from "../components/Search";
 import Title from "../components/Title";
 import SaveBtn from '../components/SaveBtn';
+import './style.css';
 
 class SearchPage extends Component {
   state = {
@@ -81,7 +82,7 @@ class SearchPage extends Component {
                     <img src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : ""} className="mr-3" alt="..." />
                     <div className="media-body">
                       <h5 className="mt-0 mb-1">{book.volumeInfo.title} <span className="font-italic">by {book.volumeInfo.authors.join(", ")}</span></h5>
-                      <p className="d-block text-truncate description" style={{ "max-width": "960px" }}>{book.volumeInfo.description}</p>
+                      <p className="overflow-auto description">{book.volumeInfo.description}</p>
                       <a className="btn btn-primary" target="_blank" href={book.volumeInfo.infoLink}>View</a> {" "}
                       <SaveBtn key="book.id" book={book} savebook={this.saveBook} />
 
