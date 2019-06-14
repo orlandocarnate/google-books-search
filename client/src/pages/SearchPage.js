@@ -35,12 +35,12 @@ class SearchPage extends Component {
   }
 
   saveBook = (book) => {
-    book.isSaved = true;
-    this.setState({
-      books: [...this.state.books.filter(item => book.id !== item.id), { book }
-      ]
-    });
-    console.log("UPDATE BOOKS STATE:\n", this.state.books);
+    console.log("PRESSED SAVE\n",book);
+    // book.isSaved = true;
+    // this.setState({
+    //   books: [...this.state.books.filter(item => book.id !== item.id), { book }]
+    // });
+    // console.log("UPDATE BOOKS STATE:\n", this.state.books);
     const bookData = {
       title: book.volumeInfo.title,
       authors: book.volumeInfo.authors,
@@ -49,7 +49,7 @@ class SearchPage extends Component {
       link: book.volumeInfo.infoLink,
       googleID: book.id
     }
-    console.log(bookData);
+    // console.log(bookData);
     API.saveFavorite(bookData)
     .catch(err => console.log(err));
 
@@ -76,13 +76,13 @@ class SearchPage extends Component {
           <ul className="list-unstyled">
             {this.state.books.map(book => {
               return (
-                <li className="media my-4" key={book.id}>
-                  <img src={book.volumeInfo.imageLinks.smallThumbnail} className="mr-3" alt="..." />
+                <li className="media my-4 rounded shadow p-2" key={book.id}>
+                  <img src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : ""} className="mr-3" alt="..." />
                   <div className="media-body">
                     <h5 className="mt-0 mb-1">{book.volumeInfo.title} <span className="font-italic">by {book.volumeInfo.authors.join(", ")}</span></h5>
                     <p>{book.volumeInfo.description}</p>
                     <a className="btn btn-primary" target="_blank" href={book.volumeInfo.infoLink}>View</a> {" "}
-                    <SaveBtn isSaved={book.isSaved} onClick={() => this.saveBook(book)} />
+                    <SaveBtn key="book.id" book={book} savebook={this.saveBook} />
 
                   </div>
                 </li>
