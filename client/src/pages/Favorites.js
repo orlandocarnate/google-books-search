@@ -50,7 +50,7 @@ class Favorites extends Component {
                     <img src={book.image} className="mr-3" alt="..." />
                     <div className="media-body">
                       <h5 className="mt-0 mb-1">{book.title}</h5>
-                      <p className="d-block text-truncate description" style={{"max-width": "1024px"}}>{book.description}</p>
+                      <p className="d-block text-truncate description" style={{"max-width": "960px"}}>{book.description}</p>
                       <ViewBtn bookLink={book.link} /> {" "}
                       <DeleteBtn onClick={() => this.deleteFavorite(book._id)} />
                     </div>
